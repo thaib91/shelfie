@@ -1,9 +1,16 @@
 const express = require('express');
 const massive = require('massive');
 require('dotenv').config;
+const ctrl = require('./controller')
+const {CONNECTION_STRING} = process.env
 
-const app = express();
-app.use(express.json());
+const app = express()
+app.use(express.json())
+
+app.get('/api/inventory', ctrl.getAll)
+app.post('/api/product', ctrl.createItem)
+app.delete('/api/product/:id', ctrl.deleteItem)
+app.put('/api/product/:id', ctrl.editItem)
 
 
 
